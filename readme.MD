@@ -1,36 +1,29 @@
 # Intro
 
-This is a vagrant environment for demoing the SSVMEthernet (Shared memory ethernet) functionality in FD.IO's VPP.
+This is a vagrant environment for testing several functionalities in FD.IO's VPP.
 
-The demo will walk you through setting up two docker containers, running VPP within them and then communicating between them using the SSVMEthernet interface.
-
-![SSVMEthernet Demo Setup](./ssvm_demo.png)
-
-## Note
-The demo has been updated to use the AF_PACKET interface between VPP and the linux kernel (in each NetNS / Container).
-Demo2 still uses the original TUN/TAP style configuration. However AF_PACKET is known to be more performant. By Default, please use demo3.
-
-# Use
-
-```
-https://github.com/matjohn2/fdio-ssvmethernet-demo.git
-cd fdio-ssvmethernet-demo
-vagrant up
-vagrant ssh
-
-vagrant$ /vagrant/demo3.sh
-```
-
-The demo script will walk you through the rest.
-
-# Prerequisites
-* vagrant installed on your local machine
-* Virtualbox installed on your local machine
-
-### VM PARTICULARS:
-
-By default, the VM created is/has:
-- Ubuntu 14.04
+By default, it creates 2 VMs
+- Ubuntu 16.04
 - 2 vCPUs
 - 4G of RAM
-- 2 NICs (1 x NAT - host access, 1 x VPP DPDK enabled)
+- 3 NICs (1 x NAT - host access, 2 x VPP DPDK enabled)
+
+The VMs have docker installed
+
+References:
+
+https://wiki.fd.io/view/VPP
+
+Tap and Veth interfaces
+https://wiki.fd.io/view/VPP/Tutorial_Routing_and_Switching
+
+DPDK Interfaces
+https://wiki.fd.io/view/VPP/How_To_Connect_A_PCI_Interface_To_VPP
+
+VXLAN
+https://wiki.fd.io/view/VPP/Using_VPP_as_a_VXLAN_Tunnel_Terminator
+
+Troubleshooting
+
+vppctl trace add af-packet-input
+vppctl trace add dpdk-input 
