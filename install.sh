@@ -15,7 +15,7 @@ fi
 rm /etc/apt/sources.list.d/99fd.io.list
 echo "deb [trusted=yes] https://nexus.fd.io/content/repositories/fd.io$RELEASE.ubuntu.$UBUNTU.main/ ./" | sudo tee -a /etc/apt/sources.list.d/99fd.io.list
 apt-get -qq update
-apt-get -qq install -y docker.io tmux uuid screen netperf git
+apt-get -qq install -y docker.io tmux uuid screen netperf git ethtool
 apt-get -qq install -y vpp vpp-dpdk-dkms dkms
 apt-get -qq install -y linux-headers-$(uname -r)
 modprobe -v igb_uio

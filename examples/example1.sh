@@ -11,6 +11,7 @@ ip netns exec ns0 ip link set vethns0 up
 ip netns exec ns0 ip addr add 2001::1/64 dev vethns0
 ip netns exec ns0 ip addr add 10.0.0.1/24 dev vethns0
 ip netns exec ns0 ethtool -K vethns0 rx off tx off
+ip link set vpp0 up
 
 ip netns add ns1
 ip link add vpp1 type veth peer name vethns1
@@ -20,6 +21,7 @@ ip netns exec ns1 ip link set vethns1 up
 ip netns exec ns1 ip addr add 2001::2/64 dev vethns1
 ip netns exec ns1 ip addr add 10.0.0.2/24 dev vethns1
 ip netns exec ns1 ethtool -K vethns1 rx off tx off
+ip link set vpp1 up
 
 vppctl create host-interface name vpp0
 vppctl create host-interface name vpp1
